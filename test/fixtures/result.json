@@ -113,17 +113,17 @@
       "_type": "onelogin_user",
       "_class": "User",
       "id": 50505111,
-      "displayName": "null null",
+      "displayName": "fname lname",
       "activatedAt": null,
       "createdAt": "2019-02-22T10:06:18.303Z",
       "email": "third_user@user.local",
       "username": "third_user",
-      "firstname": "",
+      "firstname": "fname",
       "groupId": 0,
       "invalidLoginAttempts": null,
       "invitationSentAt": null,
       "lastLogin": null,
-      "lastname": "",
+      "lastname": "lname",
       "lockedUntil": null,
       "comment": "",
       "openidName": "",
@@ -169,22 +169,22 @@
   "accountUserRelationships": [
     {
       "_class": "HAS",
-      "_fromEntityKey": "onelogin-account-key-undefined",
-      "_key": "onelogin-account-key-undefined_has_onelogin-user-key-50504993",
+      "_fromEntityKey": "onelogin-account-key-account-xxx",
+      "_key": "onelogin-account-key-account-xxx_has_onelogin-user-key-50504993",
       "_toEntityKey": "onelogin-user-key-50504993",
       "_type": "onelogin_account_user"
     },
     {
       "_class": "HAS",
-      "_fromEntityKey": "onelogin-account-key-undefined",
-      "_key": "onelogin-account-key-undefined_has_onelogin-user-key-50505384",
+      "_fromEntityKey": "onelogin-account-key-account-xxx",
+      "_key": "onelogin-account-key-account-xxx_has_onelogin-user-key-50505384",
       "_toEntityKey": "onelogin-user-key-50505384",
       "_type": "onelogin_account_user"
     },
     {
       "_class": "HAS",
-      "_fromEntityKey": "onelogin-account-key-undefined",
-      "_key": "onelogin-account-key-undefined_has_onelogin-user-key-50505111",
+      "_fromEntityKey": "onelogin-account-key-account-xxx",
+      "_key": "onelogin-account-key-account-xxx_has_onelogin-user-key-50505111",
       "_toEntityKey": "onelogin-user-key-50505111",
       "_type": "onelogin_account_user"
     }

@@ -1,4 +1,4 @@
-import { User } from "../onelogin/OneLoginClient";
+import { Account, User } from "../onelogin/OneLoginClient";
 
 import {
   ACCOUNT_USER_RELATIONSHIP_CLASS,
@@ -9,7 +9,10 @@ import {
 import { generateAccountKey } from "./AccountEntityConverter";
 import { generateUserKey } from "./UserEntityConverter";
 
-export function createAccountUserRelationships(users: User[], account: any) {
+export function createAccountUserRelationships(
+  users: User[],
+  account: Account,
+) {
   const defaultValue: AccountUserRelationship[] = [];
 
   return users.reduce((acc, user) => {

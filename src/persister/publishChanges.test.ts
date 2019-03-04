@@ -1,8 +1,7 @@
 import { createTestIntegrationExecutionContext } from "@jupiterone/jupiter-managed-integration-sdk";
-import { OneLoginClient } from "../onelogin";
-import fetchOneLoginData from "../onelogin/fetchOneLoginData";
-
 import { readFileSync } from "fs";
+import initializeContext from "../initializeContext";
+import fetchOneLoginData from "../onelogin/fetchOneLoginData";
 import { convert } from "./publishChanges";
 
 function readFixture(fixtureName: string) {
@@ -27,25 +26,22 @@ jest.mock("node-fetch", () => {
 });
 
 test("convert", async () => {
-  const provider = new OneLoginClient("fakeClientId", "fakeClientSecret");
-
-  await provider.authenticate();
-
   const options = {
     instance: {
       config: {
-        clientId: "",
-        clientSecret: "",
+        clientId: "fakeClientId",
+        clientSecret: "fakeClientSecret",
       },
       id: "account-xxx",
       name: "test-name",
     },
   };
 
-  const executionContext = createTestIntegrationExecutionContext(options);
+  const context = createTestIntegrationExecutionContext(options);
+  const { provider, account } = await initializeContext(context);
 
   const oneLoginData = await fetchOneLoginData(provider);
-  const newData = convert(oneLoginData, executionContext);
+  const newData = convert(oneLoginData, account);
 
   expect(newData).toEqual(readFixture("result"));
 });

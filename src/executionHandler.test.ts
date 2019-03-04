@@ -24,6 +24,10 @@ test("executionHandler", async () => {
       fetchGroups: jest.fn().mockReturnValue([]),
       fetchRoles: jest.fn().mockReturnValue([]),
     },
+    account: {
+      id: "",
+      name: "",
+    },
   };
 
   (initializeContext as jest.Mock).mockReturnValue(executionContext);
