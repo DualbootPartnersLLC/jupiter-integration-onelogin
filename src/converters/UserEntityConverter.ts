@@ -1,14 +1,14 @@
 import { USER_ENTITY_CLASS, USER_ENTITY_TYPE, UserEntity } from "../jupiterone";
 import { User } from "../onelogin/OneLoginClient";
 
-export function generateUserId(id?: number) {
-  return `onelogin-user-id-${id}`;
+export function generateUserKey(id?: number) {
+  return `onelogin-user-key-${id}`;
 }
 
 export function createUserEntities(data: User[]): UserEntity[] {
   return data.map(user => {
     return {
-      _key: generateUserId(user.id),
+      _key: generateUserKey(user.id),
       _type: USER_ENTITY_TYPE,
       _class: USER_ENTITY_CLASS,
       id: user.id,

@@ -6,22 +6,22 @@ import {
   AccountUserRelationship,
 } from "../jupiterone";
 
-import { generateAccountId } from "./AccountEntityConverter";
-import { generateUserId } from "./UserEntityConverter";
+import { generateAccountKey } from "./AccountEntityConverter";
+import { generateUserKey } from "./UserEntityConverter";
 
 export function createAccountUserRelationships(users: User[], account: any) {
   const defaultValue: AccountUserRelationship[] = [];
 
   return users.reduce((acc, user) => {
-    const parentId = generateAccountId(account.id);
-    const childId = generateUserId(user.id);
+    const parentKey = generateAccountKey(account.id);
+    const childKey = generateUserKey(user.id);
 
     const relationship: AccountUserRelationship = {
       _class: ACCOUNT_USER_RELATIONSHIP_CLASS,
-      _fromEntityKey: parentId,
-      _key: `${parentId}_has_${childId}`,
+      _fromEntityKey: parentKey,
+      _key: `${parentKey}_has_${childKey}`,
       _type: ACCOUNT_USER_RELATIONSHIP_TYPE,
-      _toEntityKey: childId,
+      _toEntityKey: childKey,
     };
 
     return [...acc, relationship];

@@ -5,8 +5,8 @@ import {
   AccountEntity,
 } from "../jupiterone";
 
-export function generateAccountId(id?: string) {
-  return `onelogin-account-id-${id}`;
+export function generateAccountKey(id?: string) {
+  return `onelogin-account-key-${id}`;
 }
 
 export function createAccountEntity(
@@ -14,7 +14,7 @@ export function createAccountEntity(
 ): AccountEntity {
   return {
     _class: ACCOUNT_ENTITY_CLASS,
-    _key: generateAccountId(instance.id),
+    _key: generateAccountKey(instance.id),
     _type: ACCOUNT_ENTITY_TYPE,
     displayName: instance.config.accountName || instance.name,
     name: instance.config.accountName || instance.name,
