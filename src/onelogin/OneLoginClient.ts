@@ -93,6 +93,7 @@ export interface OneLoginDataModel {
   groups: Group[];
   users: User[];
   roles: Role[];
+  accountName?: string;
 }
 
 enum Method {

@@ -1,5 +1,11 @@
-import { PersisterClient } from "@jupiterone/jupiter-managed-integration-sdk";
 import {
+  IntegrationExecutionContext,
+  IntegrationInvocationEvent,
+  PersisterClient,
+} from "@jupiterone/jupiter-managed-integration-sdk";
+import {
+  createAccountEntity,
+  createAccountUserRelationships,
   createGroupEntities,
   createRoleEntities,
   createUserEntities,
@@ -8,6 +14,7 @@ import {
 } from "../converters";
 
 import {
+  AccountEntity,
   GroupEntity,
   JupiterOneDataModel,
   RoleEntity,
@@ -19,10 +26,15 @@ export default async function publishChanges(
   persister: PersisterClient,
   oldData: JupiterOneDataModel,
   oneLoginData: OneLoginDataModel,
+  context: IntegrationExecutionContext<IntegrationInvocationEvent>,
 ) {
-  const newData = convert(oneLoginData);
+  const newData = convert(oneLoginData, context);
 
   const entities = [
+    ...persister.processEntities<AccountEntity>(
+      oldData.accounts,
+      newData.accounts,
+    ),
     ...persister.processEntities<UserEntity>(oldData.users, newData.users),
     ...persister.processEntities<GroupEntity>(oldData.groups, newData.groups),
     ...persister.processEntities<RoleEntity>(oldData.roles, newData.roles),
@@ -44,8 +56,10 @@ export default async function publishChanges(
 
 export function convert(
   oneLoginDataModel: OneLoginDataModel,
+  context: IntegrationExecutionContext<IntegrationInvocationEvent>,
 ): JupiterOneDataModel {
   return {
+    accounts: [createAccountEntity(context.instance)],
     groups: createGroupEntities(oneLoginDataModel.groups),
     users: createUserEntities(oneLoginDataModel.users),
     roles: createRoleEntities(oneLoginDataModel.roles),
@@ -55,6 +69,10 @@ export function convert(
     userRoleRelationships: createUserRoleRelationships(
       oneLoginDataModel.users,
       oneLoginDataModel.roles,
+    ),
+    accountUserRelationships: createAccountUserRelationships(
+      oneLoginDataModel.users,
+      context,
     ),
   };
 }

@@ -18,6 +18,6 @@ export default async function executionHandler(
   const oneLoginData = await fetchOneLoginData(provider);
 
   return {
-    operations: await publishChanges(persister, oldData, oneLoginData),
+    operations: await publishChanges(persister, oldData, oneLoginData, context),
   };
 }

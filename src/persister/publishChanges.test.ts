@@ -1,5 +1,4 @@
-// const { OneLoginClient, fetchOneLoginData } = jest.requireActual('../onelogin');
-// const fetchOneLoginData = jest.requireActual('../onelogin/fetchOneLoginData');
+import { createTestIntegrationExecutionContext } from "@jupiterone/jupiter-managed-integration-sdk";
 import { OneLoginClient } from "../onelogin";
 import fetchOneLoginData from "../onelogin/fetchOneLoginData";
 
@@ -32,8 +31,21 @@ test("convert", async () => {
 
   await provider.authenticate();
 
+  const options = {
+    instance: {
+      config: {
+        clientId: "",
+        clientSecret: "",
+      },
+      id: "id-xxx",
+      name: "test-name",
+    },
+  };
+
+  const executionContext = createTestIntegrationExecutionContext(options);
+
   const oneLoginData = await fetchOneLoginData(provider);
-  const newData = convert(oneLoginData);
+  const newData = convert(oneLoginData, executionContext);
 
   expect(newData).toEqual(readFixture("result"));
 });

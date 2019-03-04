@@ -1,4 +1,14 @@
 {
+  "accounts": [
+    {
+      "_class": "Account",
+      "_key": "onelogin-account-id-id-xxx",
+      "_type": "onelogin_account",
+      "displayName": "test-name",
+      "name": "test-name"
+    }
+  ],
+
   "groups": [
     {
       "_class": "UserGroup",
