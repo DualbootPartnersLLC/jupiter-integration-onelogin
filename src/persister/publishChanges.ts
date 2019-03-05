@@ -1,6 +1,8 @@
 import { PersisterClient } from "@jupiterone/jupiter-managed-integration-sdk";
 import {
   createAccountEntity,
+  createAccountGroupRelationships,
+  createAccountRoleRelationships,
   createAccountUserRelationships,
   createGroupEntities,
   createRoleEntities,
@@ -39,6 +41,18 @@ export default async function publishChanges(
 
   const relationships = [
     ...persister.processRelationships(
+      oldData.accountUserRelationships,
+      newData.accountUserRelationships,
+    ),
+    ...persister.processRelationships(
+      oldData.accountGroupRelationships,
+      newData.accountGroupRelationships,
+    ),
+    ...persister.processRelationships(
+      oldData.accountRoleRelationships,
+      newData.accountRoleRelationships,
+    ),
+    ...persister.processRelationships(
       oldData.userGroupRelationships,
       newData.userGroupRelationships,
     ),
@@ -69,6 +83,14 @@ export function convert(
     ),
     accountUserRelationships: createAccountUserRelationships(
       oneLoginDataModel.users,
+      account,
+    ),
+    accountGroupRelationships: createAccountGroupRelationships(
+      oneLoginDataModel.groups,
+      account,
+    ),
+    accountRoleRelationships: createAccountRoleRelationships(
+      oneLoginDataModel.roles,
       account,
     ),
   };

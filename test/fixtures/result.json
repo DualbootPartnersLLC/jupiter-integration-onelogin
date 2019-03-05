@@ -189,6 +189,38 @@
       "_type": "onelogin_account_user"
     }
   ],
+  "accountGroupRelationships": [
+    {
+      "_class": "HAS",
+      "_fromEntityKey": "onelogin-account-key-account-xxx",
+      "_key": "onelogin-account-key-account-xxx_has_onelogin-group-key-445014",
+      "_toEntityKey": "onelogin-group-key-445014",
+      "_type": "onelogin_account_group"
+    },
+    {
+      "_class": "HAS",
+      "_fromEntityKey": "onelogin-account-key-account-xxx",
+      "_key": "onelogin-account-key-account-xxx_has_onelogin-group-key-445039",
+      "_toEntityKey": "onelogin-group-key-445039",
+      "_type": "onelogin_account_group"
+    }
+  ],
+  "accountRoleRelationships": [
+    {
+      "_class": "HAS",
+      "_fromEntityKey": "onelogin-account-key-account-xxx",
+      "_key": "onelogin-account-key-account-xxx_has_onelogin-role-key-252104",
+      "_toEntityKey": "onelogin-role-key-252104",
+      "_type": "onelogin_account_role"
+    },
+    {
+      "_class": "HAS",
+      "_fromEntityKey": "onelogin-account-key-account-xxx",
+      "_key": "onelogin-account-key-account-xxx_has_onelogin-role-key-252336",
+      "_toEntityKey": "onelogin-role-key-252336",
+      "_type": "onelogin_account_role"
+    }
+  ],
   "userGroupRelationships": [
     {
       "_class": "HAS",

@@ -7,3 +7,9 @@ export { createUserRoleRelationships } from "./UserRoleRelationshipConverter";
 export {
   createAccountUserRelationships,
 } from "./AccountUserRelationshipConverter";
+export {
+  createAccountGroupRelationships,
+} from "./AccountGroupRelationshipConverter";
+export {
+  createAccountRoleRelationships,
+} from "./AccountRoleRelationshipConverter";

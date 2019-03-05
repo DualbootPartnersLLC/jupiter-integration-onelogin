@@ -5,3 +5,5 @@ export * from "./AccountEntity";
 export * from "./UserGroupRelationship";
 export * from "./UserRoleRelationship";
 export * from "./AccountUserRelationship";
+export * from "./AccountGroupRelationship";
+export * from "./AccountRoleRelationship";

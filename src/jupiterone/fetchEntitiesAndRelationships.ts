@@ -1,8 +1,12 @@
 import { GraphClient } from "@jupiterone/jupiter-managed-integration-sdk";
 import {
   ACCOUNT_ENTITY_TYPE,
+  ACCOUNT_GROUP_RELATIONSHIP_TYPE,
+  ACCOUNT_ROLE_RELATIONSHIP_TYPE,
   ACCOUNT_USER_RELATIONSHIP_TYPE,
   AccountEntity,
+  AccountGroupRelationship,
+  AccountRoleRelationship,
   AccountUserRelationship,
   GROUP_ENTITY_TYPE,
   GroupEntity,
@@ -24,6 +28,8 @@ export interface JupiterOneDataModel {
   userGroupRelationships: UserGroupRelationship[];
   userRoleRelationships: UserRoleRelationship[];
   accountUserRelationships: AccountUserRelationship[];
+  accountGroupRelationships: AccountGroupRelationship[];
+  accountRoleRelationships: AccountRoleRelationship[];
 }
 
 export default async function fetchEntitiesAndRelationships(
@@ -37,6 +43,8 @@ export default async function fetchEntitiesAndRelationships(
     userGroupRelationships,
     userRoleRelationships,
     accountUserRelationships,
+    accountGroupRelationships,
+    accountRoleRelationships,
   ] = await Promise.all([
     graph.findEntitiesByType<AccountEntity>(ACCOUNT_ENTITY_TYPE),
     graph.findEntitiesByType<UserEntity>(USER_ENTITY_TYPE),
@@ -45,6 +53,8 @@ export default async function fetchEntitiesAndRelationships(
     graph.findRelationshipsByType(USER_GROUP_RELATIONSHIP_TYPE),
     graph.findRelationshipsByType(USER_ROLE_RELATIONSHIP_TYPE),
     graph.findRelationshipsByType(ACCOUNT_USER_RELATIONSHIP_TYPE),
+    graph.findRelationshipsByType(ACCOUNT_GROUP_RELATIONSHIP_TYPE),
+    graph.findRelationshipsByType(ACCOUNT_ROLE_RELATIONSHIP_TYPE),
   ]);
 
   return {
@@ -55,5 +65,7 @@ export default async function fetchEntitiesAndRelationships(
     userGroupRelationships,
     userRoleRelationships,
     accountUserRelationships,
+    accountGroupRelationships,
+    accountRoleRelationships,
   };
 }
