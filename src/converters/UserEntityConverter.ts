@@ -1,3 +1,4 @@
+import * as lodash from "lodash";
 import { USER_ENTITY_CLASS, USER_ENTITY_TYPE, UserEntity } from "../jupiterone";
 import { User } from "../onelogin/OneLoginClient";
 
@@ -7,7 +8,7 @@ export function generateUserKey(id?: number) {
 
 export function createUserEntities(data: User[]): UserEntity[] {
   return data.map(user => {
-    return {
+    const userEntity: UserEntity = {
       _key: generateUserKey(user.id),
       _type: USER_ENTITY_TYPE,
       _class: USER_ENTITY_CLASS,
@@ -46,5 +47,10 @@ export function createUserEntities(data: User[]): UserEntity[] {
       state: user.state,
       trustedIdpId: user.trusted_idp_id || undefined,
     };
+
+    return lodash.omitBy(
+      userEntity,
+      (value: any) => value === undefined,
+    ) as UserEntity;
   });
 }

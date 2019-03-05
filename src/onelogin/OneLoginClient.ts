@@ -54,8 +54,8 @@ export interface User {
   distinguished_name: string;
   external_id: number;
   directory_id: number;
-  member_of: null;
-  samaccountname: null;
+  member_of: string | null;
+  samaccountname: string | null;
   userprincipalname: null;
   manager_ad_id: null;
   manager_user_id: null;
